@@ -3,7 +3,8 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/customer/:id" do
-    Customer.all.find(params[:id])
+    customer = Customer.all.find(params[:id])
+    customer.to_json
   end
 
 end
