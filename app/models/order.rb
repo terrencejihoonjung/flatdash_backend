@@ -4,6 +4,6 @@ class Order < ActiveRecord::Base
     has_many :menu_items, through: :dishes
 
     def totalPrice 
-        self.menu_items.sum(:price)
+        menu_items.sum(:price)
     end
 end
