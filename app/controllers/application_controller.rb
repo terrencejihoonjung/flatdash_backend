@@ -1,28 +1,21 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
   get "/customer/:id" do
     customer = Customer.find(params[:id])
-    customer.to_json(include: :orders)
+    customer.include_total_spent_dishes_stats_favorite_dish.to_json
   end
 
-  # For each order we want to include the customer and menu items 
   get "/order" do
-    Order.all.to_json(include: :customer)
+    Order.all.each{ |o| o.include_customer_dishes_total_price}.to_json
   end
 
-  get "/order_price/:id" do
+  get "/order/:id" do
     # is there a better way to call #totalPrice?
     # is there a better way to add a k|v pair to the json? 
+    
     order = Order.find(params[:id])
-    orderPrice = order.total_price
-  
-    order_json = order.to_json
-
-    hash = JSON.parse(order_json)
-    hash.store(:total, orderPrice)
-    hash.to_json
+    order.include_customer_dishes_total_price.to_json
   end
 
 end
