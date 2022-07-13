@@ -16,13 +16,13 @@ class ApplicationController < Sinatra::Base
     # is there a better way to call #totalPrice?
     # is there a better way to add a k|v pair to the json? 
     order = Order.find(params[:id])
-    orderPrice = order.totalPrice
+    orderPrice = order.total_price
   
     order_json = order.to_json
 
-    h = JSON.parse(order_json)
-    h.store(:total, orderPrice)
-    h.to_json
+    hash = JSON.parse(order_json)
+    hash.store(:total, orderPrice)
+    hash.to_json
   end
 
 end

@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
     has_many :dishes
     has_many :menu_items, through: :dishes
 
-    def totalPrice 
+    def total_price 
         menu_items.sum(:price)
     end
 end
