@@ -2,14 +2,13 @@ puts "🙋‍♀️ Seeding customers... 🙋"
 
 random_email = ["@gmail.com", "@yahoo.com", "@ymail.com"]
 
-5.times do
-    name = Faker::Name.unique.name
-    email_address = name.downcase.gsub(/[\s+ \.]/, "") + random_email.sample
-    phone_number = Faker::PhoneNumber.cell_phone
-    Customer.create(name: name, email_address: email_address , phone_number: phone_number)
-end
+Customer.create(name: "Terrence Jung", email_address: "terrencejung928@gmail.com", phone_number: "827-839-9022")
+Customer.create(name: "Mark Reese", email_address: "markreese@gmail.com", phone_number: "748-828-0829")
+Customer.create(name: "Yifan Wu", email_address: "yifanwu@gmail.com", phone_number: "027-833-2799")
+Customer.create(name: "Emiley Palmquist", email_address: "emileypalmquist@gmail", phone_number: "123-455-0928")
+Customer.create(name: "Gordon Ramsay", email_address: "idiotsandwich@gmail.com", phone_number: "444-555-6666")
 
-puts "🍔 Seeding menu items... 🍝" 
+puts "🍔 Seeding menu items... 🍝"
 
 25.times do
     item_name = Faker::Food.unique.dish

@@ -6,8 +6,8 @@ class ApplicationController < Sinatra::Base
     customer.include_total_spent_dishes_stats_favorite_dish.to_json
   end
 
-  get "/order" do
-    Order.all.each{ |o| o.include_customer_dishes_total_price}.to_json
+  get "/orders" do
+    Order.all.map{ |o| o.include_customer_dishes_total_price}.to_json
   end
 
   get "/order/:id" do
