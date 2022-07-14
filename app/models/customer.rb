@@ -34,9 +34,11 @@ class Customer < ActiveRecord::Base
     end
 
     def include_total_spent_dishes_stats_favorite_dish
-        customer_json = self.to_json(include: { orders: {only: [:id , :status , :delivery , :created_at , :updated_at ] } })
+        customer_json = self.to_json
 
         customer_hash = JSON.parse(customer_json)
+
+        customer_hash.store(:orders , self.orders.map {|o| o.include_customer_dishes_total_price})
 
         customer_hash.store(:total_spent , self.total_spent)
 
