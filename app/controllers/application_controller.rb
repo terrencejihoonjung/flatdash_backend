@@ -36,4 +36,12 @@ class ApplicationController < Sinatra::Base
     Customer.find_by(email_address: params[:email]).id.to_json
   end
 
+  patch '/orders/:id' do
+    order = Order.find(params[:id])    
+    order.update(
+      status: params[:status]
+    )
+    order.include_customer_dishes_total_price.to_json
+  end
+
 end
