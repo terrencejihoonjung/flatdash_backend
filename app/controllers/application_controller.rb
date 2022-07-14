@@ -18,15 +18,14 @@ class ApplicationController < Sinatra::Base
     order.include_customer_dishes_total_price.to_json
   end
 
-  post "/customer_login" do
-    email = params[:email]
-    Customer.find_by(email_address: email).id.to_json
-  end
-
   delete '/order/:id' do
     order = Order.find(params[:id])
     order.destroy
     order.to_json
+  end
+
+  get "/customer_lookup/:email" do
+    Customer.find_by(email_address: params[:email]).id.to_json
   end
 
 end
