@@ -18,4 +18,10 @@ class ApplicationController < Sinatra::Base
     order.include_customer_dishes_total_price.to_json
   end
 
+  delete '/order/:id' do
+    order = Order.find(params[:id])
+    order.destroy
+    order.to_json
+  end
+
 end
