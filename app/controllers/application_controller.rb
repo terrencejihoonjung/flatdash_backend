@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
     MenuItem.all.to_json
   end
 
+  get "/menu_items/:id" do 
+    MenuItem.find(params[:id]).to_json
+  end
+
   delete '/orders/:id' do
     order = Order.find(params[:id])
     order.destroy
