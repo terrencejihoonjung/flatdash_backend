@@ -57,10 +57,18 @@ class ApplicationController < Sinatra::Base
     new_order = Order.create(status: "Queued", 
       delivery: params[:delivery], 
       customer_id: new_customer.id)
+      
     params[:dishesToAdd].each do |dish|
-      # Dish.create(quantity:, menu_item_id:, order_id: new_order.id)
+      Dish.create(
+        quantity: params[:quantity][dish[:id].to_s],
+        menu_item_id: dish[:id],
+        order_id: new_order.id)
     end
     #Then create new dishes after that
+  end
+
+  get "/dishes" do 
+    Dish.all.to_json
   end
 
 end
