@@ -44,4 +44,23 @@ class ApplicationController < Sinatra::Base
     order.include_customer_dishes_total_price.to_json
   end
 
+  post '/order' do
+    search = Customer.find_by(email_address: params[:email])
+    if !search
+      new_customer = Customer.create(name: params[:name], 
+        email_address: params[:email], 
+        phone_number: params[:phone])
+    else
+      new_customer = search
+    end
+
+    new_order = Order.create(status: "Queued", 
+      delivery: params[:delivery], 
+      customer_id: new_customer.id)
+    params[:dishesToAdd].each do |dish|
+      # Dish.create(quantity:, menu_item_id:, order_id: new_order.id)
+    end
+    #Then create new dishes after that
+  end
+
 end
