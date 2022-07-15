@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
     end
 
     def include_customer_dishes_total_price
-        order_json = self.to_json(include: :customer)
+        order_json = orderReformatTime.to_json(include: :customer)
 
         order_hash = JSON.parse(order_json)
 
