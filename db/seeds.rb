@@ -37,7 +37,7 @@ status_strings = ["Queued", "In-Progress"]
 delivery_booleans = [true , false]
 
 30.times do 
-    Order.create( customer_id: Customer.all.sample.id , delivery: delivery_booleans.sample , status: status_strings.sample )    
+    Order.create(customer_id: Customer.all.sample.id, delivery: delivery_booleans.sample, status: status_strings.sample)    
 end
 
 Customer.find_by(name: "Lucas Sweeney").orders.destroy_all
@@ -49,10 +49,16 @@ end
 
 puts "✅ Done seeding! ✅"
 
-puts " Deleting empty orders "
+puts "👩🏽‍🍳 Filling empty orders 🍔"
+
+Customer.all.each do |customer|
+    if !customer.orders.first
+        Order.create(customer_id: customer.id, delivery: delivery_booleans.sample, status: status_strings.sample)    
+    end
+end
 
 Order.all.each do |order|
     if order.total_price == 0
-        order.destroy
+        Dish.create(quantity: rand(1..3), menu_item_id: MenuItem.all.sample.id, order_id: order.id)
     end
 end
