@@ -1,8 +1,6 @@
 # FlatDash Order Management System
 Restaurant order application that tracks order details and progress for each customer
 
-Deployed here:
-
 ## The User can:
 
 * Keep track of an order's status and label it as queued, in-progress, or fulfilled
