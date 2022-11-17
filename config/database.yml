@@ -6,12 +6,12 @@ default: &default
 
 development:
   <<: *default
-  database: your_project_name_development
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: your_project_name_test
+  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: your_project_name_production
+  database: db/production.sqlite3

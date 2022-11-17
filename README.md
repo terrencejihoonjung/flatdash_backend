@@ -3,9 +3,7 @@ Restaurant order application that tracks order details and progress for each cus
 
 Deployed here:
 
-## User Stories
-
-### The restaurant can...
+## The User can:
 
 * Keep track of an order's status and label it as queued, in-progress, or fulfilled
 * View an order's details
